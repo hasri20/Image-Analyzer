@@ -49,6 +49,3 @@ def analyze_file():
     uri = data.split('"')[3]
     response = requests.post('https://southeastasia.api.cognitive.microsoft.com//vision/v2.0/analyze', headers=headers, params=params, data=data)
     return render_template('analyze.html', uri = uri, response = response.text)
-
-if __name__ == '__main__':
-    app.run()
