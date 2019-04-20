@@ -51,4 +51,4 @@ def analyze_file():
     return render_template('analyze.html', uri = uri, response = response.text)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run()
