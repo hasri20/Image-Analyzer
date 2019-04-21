@@ -6,7 +6,10 @@ import requests
 
 app = Flask(__name__)
 
-block_blob_service = BlockBlobService(account_name='storagedicoding', account_key='y+onmJ455oyG8Idt/I3A0nfWCo6eCzMcHR6cGoRKKNYbj7hIlAdcvv75HQT6AquIBhH/Y+eNUUlOGkuv2JXhGw==')
+storage_account = < insert your storage account >
+storage_key = < insert your storage key >
+storage_name = < insert your storage name >
+block_blob_service = BlockBlobService(account_name= storage_account, account_key= storage_key)
 
 # Create a container called 'quickstartblobs'.
 container_name = 'quickstartblobs'
@@ -45,7 +48,7 @@ def upload_file():
 
 @app.route('/analyze')
 def analyze_file():
-    data = '{"url":"https://storagedicoding.blob.core.windows.net/quickstartblobs/blob_images"}'
+    data = '{"url":"https://'+ storage_name+ '.blob.core.windows.net/'+ container_name+ '/blob_images"}'
     uri = data.split('"')[3]
-    response = requests.post('https://southeastasia.api.cognitive.microsoft.com//vision/v2.0/analyze', headers=headers, params=params, data=data)
+    response = requests.post('https://southeastasia.api.cognitive.microsoft.com//vision/v2.0/analyze', headers= headers, params= params, data=data)
     return render_template('analyze.html', uri = uri, response = response.text)
